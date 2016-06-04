@@ -1,0 +1,495 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+
+		<title>UI Testing With Selenium in PHP</title>
+
+		<meta name="description" content="How to improve quality and maintain expectations by testing.">
+		<meta name="author" content="Benjamin Cool">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="reveal/css/reveal.css">
+		<link rel="stylesheet" href="reveal/css/theme/sky.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="reveal/lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+			
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h2>UI Testing with Selenium in PHP</h2>
+					<h3>How to use User Interface testing to increase product quality and decrease support costs.</h3>
+					<p>
+						<small><a href="https://www.a2hosting.com">Benjamin Cool</a> / <a href="http://twitter.com/benjamincool">@benjamincool</a></small>
+					</p>
+				</section>
+
+				<section>
+					<h2>Benjamin Cool</h2>
+					<ul>
+						<li class="fragment">Application Optimizer at A2 Hosting</li>
+						<li class="fragment">M.S. in Computer Science</li>
+						<li class="fragment">Concentration in Artificial Intelligence</li>
+						<li class="fragment">Member of the awesome WebDev team at A2 Hosting</li>
+						<li class="fragment">Follow me @benjamincool for slides</li>
+					</ul>
+				</section>
+				
+				<section>
+					<h2>Takeaways</h2>
+					<ul>
+						<li class="fragment">UI testing is important</li>
+						<li class="fragment">UI testing is valuable for your business</li>
+						<li class="fragment">Brittle testing methods are no good</li>
+						<li class="fragment">The Page Object Model is better</li>
+						<li class="fragment">Testing can be done in PHP</li>
+					</ul>
+				</section>
+				
+				<section>
+					<h1>Business Value</h1>
+				</section>
+				
+				<section>
+					<h2>
+						Acceptance Testing
+					</h2>
+					<ul>
+						<li class="fragment">The project meets the clients needs</li>
+						<li class="fragment">Each element of the project meets acceptance criteria</li>
+						<li class="fragment">Helps develop clear communication of needs</li>
+					</ul>
+				</section>
+				
+				<section>
+					<h2>
+						Reduce Time "Bug Fixing"
+					</h2>
+					<ul>
+						<li class="fragment">Tests are run any time new code is developed</li>
+						<li class="fragment">Allows for catching potential problems early</li>
+						<li class="fragment">Code does not go live without passing tests.</li>
+					</ul>
+				</section>
+				
+				<section>
+					<h2>Increase Overall Product Quality</h2>
+					<ul>
+						<li class="fragment left">The product meets the specs defined</li>
+						<li class="fragment left">Improves project workflow</li>
+						<li class="fragment left">Forces higher quality coding practices</li>
+						<li class="fragment left">Improves customer confidence</li>
+					</ul>
+				</section>
+				
+				<section>
+					<h2>Value to Development Teams</h2>
+					<ul>
+						<li class="fragment">Again, less time fixing bugs</li>
+						<li class="fragment">Protects from collateral damage</li>
+						<li class="fragment">Forces better communication of customer needs</li>
+						<li class="fragment">Developers can PROVE code works</li>
+						<li class="fragment">lowers stress</li>
+					</ul>
+				</section>
+				
+				
+				<section>
+					<h1>Brittle testing methods</h1>
+				</section>
+				
+				
+				<section>
+					<h3>Screen Capture / Recorders</h3>
+					<ul>
+						<li class="fragment">Selenium IDE (firefox plugin)</li>
+						<li class="fragment">Ghost Inspector</li>
+					</ul>
+				</section>
+				
+				<section>
+					<h2>How screen Capture tests work</h2>
+					<ul>
+						<li class="fragment">Open a web page</li>
+						<li class="fragment">start recording</li>
+						<li class="fragment">click around and fill out forms</li>
+						<li class="fragment">stop recording</li>
+						<li class="fragment">run the test against multiple browsers</li>
+					</ul>
+				</section>
+				
+				<section>
+					<h2>What screen capture based tests are good for</h2>
+					<ul>
+						<li class="fragment">quick testing</li>
+						<li class="fragment">pages that will never, ever change</li>
+						<li class="fragment">proof of concepts</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>What screen capture based tests are NOT good for</h2>
+					<ul>
+						<li class="fragment">robust testing</li>
+						<li class="fragment">dynamic pages</li>
+						<li class="fragment">pages under development</li>
+						<li class="fragment">pages that will change over time</li>
+						<li class="fragment">surviving a redesign</li>
+					</ul>
+				</section>
+				
+				<section>
+					<h2>Selenium WebDriver</h2>
+					<ul>
+						<div class="fragment left">Common languages like PHP, JavaScript, Java and C#</div>
+						<div class="fragment left">installable using composer</div>
+						<div class="fragment left">Used with PHPUnit for assertions</div>
+						<div class="fragment left">Used for robust testing suites</div>
+					</ul>
+				</section>
+				
+				<section>
+					<h2>Brittle WebDriver test in PHPUnit</h2>
+				</section>
+				
+				<section>
+<pre style="width:100%">
+class UITestWPExample extends PHPUnit_Framework_TestCase {
+ protected $driver;
+ public function setUp(){
+  $capabilities = array(\WebDriverCapabilityType::BROWSER_NAME => 'firefox');
+  $this->driver = RemoteWebDriver::create('http://selenium_server',$capabilities);
+  $this->driver->get('http://local.wordpress.dev/wp-login.php');
+ }
+ public function canLogInAndSeeHelloDolly() {
+  $driver = $this->driver;
+  $username   = $driver->findElement(WebDriverBy::id('user_login'));
+  $password   = $driver->findElement(WebDriverBy::id('user_pass'));
+  $rememberme = $driver->findElement(WebDriverBy::id('rememberme'));
+  $submit     = $driver->findElement(WebDriverBy::id('wp-submit'));
+  $username->sendText('admin');
+  $password->sendText('password');
+  $rememberme->click();
+  $submit->click();
+  $admin_url = 'http://local.wordpress.dev/wp-admin/index.php';
+  $driver->wait(5,500)->until(
+   function () use ($driver) {
+    return $driver->getCurrentURL() == $admin_url;
+   },
+   '5 seconds passed page did not load. oh noes.'
+  );
+  $this->assertEquals($admin_url,$driver->getCurrentURL());
+  $this->assertTrue($driver->findElement(WebDriverBy::id('dolly'))->isDisplayed());
+ }
+}
+</pre>
+				</section>
+				
+				
+				<section>
+<pre style="width:100%">
+class UITestWPExample extends PHPUnit_Framework_TestCase {
+ ...
+ ...
+ ...
+ public function canLogIn() {
+ 	$driver = $this->driver;
+  $username   = $driver->findElement(WebDriverBy::id('user_login'));
+  $password   = $driver->findElement(WebDriverBy::id('user_pass'));
+  $rememberme = $driver->findElement(WebDriverBy::id('rememberme'));
+  $submit     = $driver->findElement(WebDriverBy::id('wp-submit'));
+  $username->sendText('admin');
+  $password->sendText('password');
+  $rememberme->click();
+  $submit->click();
+  $admin_url = 'http://local.wordpress.dev/wp-admin/index.php';
+  $driver->wait(5,500)->until(
+   function () use ($driver) {
+    return $driver->getCurrentURL() == $admin_url;
+   },
+   '5 seconds passed page did not load. oh noes.'
+  );
+  $this->assertEquals($admin_url,$driver->getCurrentURL(),'not logged in');
+ }
+}
+</pre>
+				</section>
+
+				<section>
+					<h2>Wait... What!</h2>
+					<ul>
+						<li class="fragment left">Same code being used over and over again.</li>
+						<li class="fragment left">Element IDs can change.</li>
+						<li class="fragment left">Log in process can change.</li>
+					</ul>
+				</section>
+				
+				<section>
+					<h2>Non-Brittle Tests</h2>
+				</section>
+				
+				<section>
+						<h2>What is Non-Brittle</h2>
+						<div class="fragment left">Reusable</div>
+						<div class="fragment left">Easily updated</div>
+						<div class="fragment left">Modular</div>
+						<div class="fragment left">Extensible</div>
+						<div class="fragment left">Not broken by minor page updates</div>
+				</section>
+
+				<section>
+					<h2>Page Object Model</h2>
+				</section>				
+				
+				<section>
+						<h2>Why We Use the Page Object Model</h2>
+						<div class="left">Separate tests from logic to find page elements</div>
+						<div class="fragment left">Define reusable objects for elements on the page</div>
+						<div class="fragment left">Reduces code duplication</div>
+						<div class="fragment left">Increases test readability</div>
+				</section>
+				
+				
+				<section>
+						<h2>Separating Finding Page Elements From the Test</h2>
+						<div class="left">Create objects in PHP</div>
+						<div class="fragment left">Well named functions</div>
+						<div class="fragment left">Test does not use the WebDriver to find elements</div>
+						<div class="fragment left">Test only asserts true or false or equal to</div>
+				</section>
+				
+				<section>
+						<h2>Page Object Model Basics</h2>
+						<div class="left">Break the page into distinct components</div>
+						<div class="fragment left">Write an object or trait for each component</div>
+						<div class="fragment left">Object returns what test needs to assert</div>
+						<div class="fragment left">Objects do not assert</div>
+				</section>
+				
+				
+				
+				
+				<section>
+<pre style="width:100%">
+class WPLoginPage {
+ protected $driver;
+ public __construct($driver){
+  $this->driver = $driver;
+ }
+ 
+ public function LogIn(){
+  $username   = $this->driver->findElement(WebDriverBy::id('user_login'));
+  $password   = $this->driver->findElement(WebDriverBy::id('user_pass'));
+  $rememberme = $this->driver->findElement(WebDriverBy::id('rememberme'));
+  $submit     = $this->driver->findElement(WebDriverBy::id('wp-submit'));
+  $username->sendKeys('admin');
+  $password->sendKeys('password');
+  $rememberme->click();
+  $submit->click();
+  $url = 'http://local.wordpress.dev/wp-admin/';
+  $driver->wait(5,500)->until(
+   function () use ($driver) {
+    return (strpos($driver->getCurrentURL(),$url) !== false);
+   },
+   '5 seconds passed page did not load. oh noes.'
+  );
+ }
+}
+</pre>
+				</section>
+				
+				
+				
+				<section>
+<pre style="width:100%">
+class WPAdminPage {
+ protected $driver;
+ public __construct($driver){
+  $this->driver = $driver;
+ }
+ 
+ public function isHelloDollyVisible(){
+  try{
+    $dolly = $this->driver->findElement(WebDriverBy::id('dolly'));
+    return $dolly->isDisplayed();
+  }
+  catch(NoSuchElementException $e){
+    return false;
+  }
+ }
+}
+</pre>
+				</section>
+				
+				
+				
+				<section>
+<pre style="width:100%">
+class UITestWPExample extends PHPUnit_Framework_TestCase {
+ protected $driver;
+ public function setUp(){
+  $capabilities = array(\WebDriverCapabilityType::BROWSER_NAME => 'firefox');
+  $this->driver = RemoteWebDriver::create('http://selenium_server',$capabilities);
+  $this->driver->get('http://local.wordpress.dev/wp-login.php');
+ }
+ public function canLogIn() {
+ 	$page = new WPLoginPage($this->driver);
+  $page->logIn();
+  $page = new WPAdminPage($this->driver);
+  $this->assertTrue($page->isAdminUrl());
+ }
+ public function canLogInAndSeeHelloDolly() {
+  $page = new WPAdminPage($this->driver);
+  $page->logIn();
+  $page = new WPAdminPage($this->driver);
+  $this->assertTrue($page->isAdminUrl());
+  $this->assertTrue($page->isHelloDollyVisible());
+ }
+}
+</pre>
+				</section>
+				
+				
+				<section>
+					<h2>Testing for Accessibility</h2>
+					
+<pre style="width:100%">
+class UITestWPExample extends PHPUnit_Framework_TestCase {
+ ...
+ ...
+ ...
+ public function testButtonsHaveAriaRoles(){
+  $page = new HomePage($this->driver);
+  $buttons = $page->getButtons();
+  foreach($buttons as $button){
+    assertTrue($button->hasAttribute('aria-role'));
+  }
+ }
+}
+</pre>
+				</section>
+				
+				
+				<section>
+					<h2>The Selenium Server</h2>
+					<ul>
+						<li class="fragment left">Built in FireFox support</li>
+						<li class="fragment left">Automates the browser</li>
+						<li class="fragment left">Listens to commands from the Test</li>
+						<li class="fragment left">3rd party Drivers made by browser vendors</li>
+					</ul>
+				</section>
+				
+				<section>
+					<h2>Selenium Server Services</h2>
+					<ul>
+						<li class="fragment left">BrowserStack</li>
+						<li class="fragment left">Sauce Labs</li>
+						<li class="fragment left">Cross Browser Testing</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Advantages of using a service</h2>
+					<ul>
+						<li class="fragment left">Up to date WebDrivers</li>
+						<li class="fragment left">Multiple Operating Systems</li>
+						<li class="fragment left">Mobile Devices</li>
+						<li class="fragment left">Parallel Tests</li>
+					</ul>
+				</section>
+				
+				<section>
+					<h2>What is Needed</h2>
+					<ul>
+						<li class="fragment left">Development Environment with PHP</li>
+						<li class="fragment left">PHPUnit</li>
+						<li class="fragment left">PHP WebDriver by Facebook</li>
+						<li class="fragment left">Selenium Server or Service</li>
+					</ul>
+				</section>
+				
+				
+				<section>
+					<h2>Installing PHPUnit and PHP Webdriver</h2>
+					<h3>Use composer for the easiest method</h3>
+<pre>
+	{
+	  "require-dev" : {
+	    "phpunit/phpunit" : "5.3.*",
+	    "phpunit/phpunit-selenium" : "^1.4",
+	    "facebook/webdriver" : "dev-master"
+	  }
+	}
+</pre>
+				</section>
+			
+				
+				
+				
+				<section >
+						<h2>Thank You!</h2>
+						<div >Follow me on Twitter @benjamincool for slides</div>
+				</section>
+
+
+			</div>
+
+		</div>
+
+		<script src="reveal/lib/js/head.min.js"></script>
+		<script src="reveal/js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: false,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'convex', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+			Reveal.configure({ backgroundTransition: 'zoom' })
+
+		</script>
+
+	</body>
+</html>
