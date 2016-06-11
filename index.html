@@ -1,190 +1,263 @@
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
+  <head>
+    <meta charset="utf-8">
 
-		<title>UI Testing With Selenium in PHP</title>
+    <title>UI Testing With Selenium in PHP</title>
 
-		<meta name="description" content="How to improve quality and maintain expectations by testing.">
-		<meta name="author" content="Benjamin Cool">
+    <meta name="description" content="How to improve quality and maintain expectations by testing.">
+    <meta name="author" content="Benjamin Cool">
 
-		<meta name="apple-mobile-web-app-capable" content="yes" />
-		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
 
-		<link rel="stylesheet" href="reveal/css/reveal.css">
-		<link rel="stylesheet" href="reveal/css/theme/sky.css" id="theme">
+    <link rel="stylesheet" href="reveal/css/reveal.css">
+    <link rel="stylesheet" href="reveal/css/theme/sky.css" id="theme">
 
-		<!-- Code syntax highlighting -->
-		<link rel="stylesheet" href="reveal/lib/css/zenburn.css">
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="reveal/lib/css/zenburn.css">
 
-		<!-- Printing and PDF exports -->
-		<script>
-			var link = document.createElement( 'link' );
-			link.rel = 'stylesheet';
-			link.type = 'text/css';
-			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
-			document.getElementsByTagName( 'head' )[0].appendChild( link );
-			
-		</script>
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+      
+    </script>
 
-		<!--[if lt IE 9]>
-		<script src="lib/js/html5shiv.js"></script>
-		<![endif]-->
-	</head>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
 
-	<body>
+  <body>
 
-		<div class="reveal">
+    <div class="reveal">
 
-			<!-- Any section element inside of this container is displayed as a slide -->
-			<div class="slides">
-				<section>
-					<h2>UI Testing with Selenium in PHP</h2>
-					<h3>How to use User Interface testing to increase product quality and decrease support costs.</h3>
-					<p>
-						<small><a href="https://www.a2hosting.com">Benjamin Cool</a> / <a href="http://twitter.com/benjamincool">@benjamincool</a></small>
-					</p>
-				</section>
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+        <section>
+          <h2>UI Testing with Selenium in PHP</h2>
+          <h3>How to use User Interface testing to increase product quality and decrease support costs.</h3>
+          <p>
+            <small><a href="https://www.a2hosting.com">Benjamin Cool</a> / <a href="http://twitter.com/benjamincool">@benjamincool</a></small>
+          </p>
+        </section>
 
-				<section>
-					<h2>Benjamin Cool</h2>
-					<ul>
-						<li class="fragment">Application Optimizer at A2 Hosting</li>
-						<li class="fragment">M.S. in Computer Science</li>
-						<li class="fragment">Concentration in Artificial Intelligence</li>
-						<li class="fragment">Member of the awesome WebDev team at A2 Hosting</li>
-						<li class="fragment">Follow me @benjamincool for slides</li>
-					</ul>
-				</section>
-				
-				<section>
-					<h2>Takeaways</h2>
-					<ul>
-						<li class="fragment">UI testing is important</li>
-						<li class="fragment">UI testing is valuable for your business</li>
-						<li class="fragment">Brittle testing methods are no good</li>
-						<li class="fragment">The Page Object Model is better</li>
-						<li class="fragment">Testing can be done in PHP</li>
-					</ul>
-				</section>
-				
-				<section>
-					<h1>Business Value</h1>
-				</section>
-				
-				<section>
-					<h2>
-						Acceptance Testing
-					</h2>
-					<ul>
-						<li class="fragment">The project meets the clients needs</li>
-						<li class="fragment">Each element of the project meets acceptance criteria</li>
-						<li class="fragment">Helps develop clear communication of needs</li>
-					</ul>
-				</section>
-				
-				<section>
-					<h2>
-						Reduce Time "Bug Fixing"
-					</h2>
-					<ul>
-						<li class="fragment">Tests are run any time new code is developed</li>
-						<li class="fragment">Allows for catching potential problems early</li>
-						<li class="fragment">Code does not go live without passing tests.</li>
-					</ul>
-				</section>
-				
-				<section>
-					<h2>Increase Overall Product Quality</h2>
-					<ul>
-						<li class="fragment left">The product meets the specs defined</li>
-						<li class="fragment left">Improves project workflow</li>
-						<li class="fragment left">Forces higher quality coding practices</li>
-						<li class="fragment left">Improves customer confidence</li>
-					</ul>
-				</section>
-				
-				<section>
-					<h2>Value to Development Teams</h2>
-					<ul>
-						<li class="fragment">Again, less time fixing bugs</li>
-						<li class="fragment">Protects from collateral damage</li>
-						<li class="fragment">Forces better communication of customer needs</li>
-						<li class="fragment">Developers can PROVE code works</li>
-						<li class="fragment">lowers stress</li>
-					</ul>
-				</section>
-				
-				
-				<section>
-					<h1>Brittle testing methods</h1>
-				</section>
-				
-				
-				<section>
-					<h3>Screen Capture / Recorders</h3>
-					<ul>
-						<li class="fragment">Selenium IDE (firefox plugin)</li>
-						<li class="fragment">Ghost Inspector</li>
-					</ul>
-				</section>
-				
-				<section>
-					<h2>How screen Capture tests work</h2>
-					<ul>
-						<li class="fragment">Open a web page</li>
-						<li class="fragment">start recording</li>
-						<li class="fragment">click around and fill out forms</li>
-						<li class="fragment">stop recording</li>
-						<li class="fragment">run the test against multiple browsers</li>
-					</ul>
-				</section>
-				
-				<section>
-					<h2>What screen capture based tests are good for</h2>
-					<ul>
-						<li class="fragment">quick testing</li>
-						<li class="fragment">pages that will never, ever change</li>
-						<li class="fragment">proof of concepts</li>
-					</ul>
-				</section>
+        <section>
+          <h2>Benjamin Cool</h2>
+          <ul>
+            <li class="fragment">Application Optimizer at A2 Hosting</li>
+            <li class="fragment">M.S. in Computer Science</li>
+            <li class="fragment">Concentration in Artificial Intelligence</li>
+            <li class="fragment">Member of the awesome WebDev team at A2 Hosting</li>
+            <li class="fragment">Follow me @benjamincool for slides</li>
+          </ul>
+        </section>
+        
+        <section>
+          <h2>Takeaways</h2>
+          <ul>
+            <li class="fragment">UI testing is important</li>
+            <li class="fragment">UI testing is valuable for your business</li>
+            <li class="fragment">Brittle testing methods are no good</li>
+            <li class="fragment">The Page Object Model is better</li>
+            <li class="fragment">Testing can be done in PHP</li>
+          </ul>
+        </section>
+        
+        <section>
+          <h1>Business Value</h1>
+        </section>
+        
+        <section>
+          <h2>
+            Acceptance Testing
+          </h2>
+          <ul>
+            <li class="fragment">The project meets the clients needs</li>
+            <li class="fragment">Each element of the project meets acceptance criteria</li>
+            <li class="fragment">Helps develop clear communication of needs</li>
+          </ul>
+        </section>
+        
+        <section>
+          <h2>
+            Reduce Time "Bug Fixing"
+          </h2>
+          <ul>
+            <li class="fragment">Tests are run any time new code is developed</li>
+            <li class="fragment">Allows for catching potential problems early</li>
+            <li class="fragment">Code does not go live without passing tests.</li>
+          </ul>
+        </section>
+        
+        <section>
+          <h2>Increase Overall Product Quality</h2>
+          <ul>
+            <li class="fragment left">The product meets the specs defined</li>
+            <li class="fragment left">Improves project workflow</li>
+            <li class="fragment left">Forces higher quality coding practices</li>
+            <li class="fragment left">Improves customer confidence</li>
+          </ul>
+        </section>
+        
+        <section>
+          <h2>Value to Development Teams</h2>
+          <ul>
+            <li class="fragment">Again, less time fixing bugs</li>
+            <li class="fragment">Protects from collateral damage</li>
+            <li class="fragment">Forces better communication of customer needs</li>
+            <li class="fragment">Developers can PROVE code works</li>
+            <li class="fragment">lowers stress</li>
+          </ul>
+        </section>
+        
+        <section>
+          <h1>Brittle testing methods</h1>
+        </section>
+        
+        
+        <section>
+          <h3>Screen Capture / Recorders</h3>
+          <ul>
+            <li class="fragment">Selenium IDE (firefox plugin)</li>
+            <li class="fragment">Ghost Inspector</li>
+          </ul>
+        </section>
+        
+        <section>
+          <h2>How screen Capture tests work</h2>
+          <ul>
+            <li class="fragment">Open a web page</li>
+            <li class="fragment">start recording</li>
+            <li class="fragment">click around and fill out forms</li>
+            <li class="fragment">stop recording</li>
+            <li class="fragment">run the test against multiple browsers</li>
+          </ul>
+        </section>
+        
+        <section>
+          <h2>What screen capture based tests are good for</h2>
+          <ul>
+            <li class="fragment">quick testing</li>
+            <li class="fragment">pages that will never, ever change</li>
+            <li class="fragment">proof of concepts</li>
+          </ul>
+        </section>
 
-				<section>
-					<h2>What screen capture based tests are NOT good for</h2>
-					<ul>
-						<li class="fragment">robust testing</li>
-						<li class="fragment">dynamic pages</li>
-						<li class="fragment">pages under development</li>
-						<li class="fragment">pages that will change over time</li>
-						<li class="fragment">surviving a redesign</li>
-					</ul>
-				</section>
-				
-				<section>
-					<h2>Selenium WebDriver</h2>
-					<ul>
-						<div class="fragment left">Common languages like PHP, JavaScript, Java and C#</div>
-						<div class="fragment left">installable using composer</div>
-						<div class="fragment left">Used with PHPUnit for assertions</div>
-						<div class="fragment left">Used for robust testing suites</div>
-					</ul>
-				</section>
-				
-				<section>
-					<h2>Brittle WebDriver test in PHPUnit</h2>
-				</section>
-				
-				<section>
+        <section>
+          <h2>What screen capture based tests are NOT good for</h2>
+          <ul>
+            <li class="fragment">robust testing</li>
+            <li class="fragment">dynamic pages</li>
+            <li class="fragment">pages under development</li>
+            <li class="fragment">pages that will change over time</li>
+            <li class="fragment">surviving a redesign</li>
+          </ul>
+        </section>
+        
+        <section>
+          <h2>Selenium WebDriver Primer</h2>
+          <ul>
+            <div class="fragment left">Common languages like PHP, JavaScript, Java and C#</div>
+            <div class="fragment left">installable using composer</div>
+            <div class="fragment left">Used with PHPUnit for assertions</div>
+            <div class="fragment left">Used for robust testing suites</div>
+          </ul>
+        </section>
+        
+        <section>
+          <h2>PHP WebDriver Common Functions</h2>
+          <ul>
+            <li>WebDriver Class</li>
+            <li>
+              <ul>
+                <li>get()</li>
+                <li>FindElements()</li>
+                <li>FindElement()</li>
+                <li>getTitle()</li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+        
+        
+        <section>
+          <h2>WebDriverElement Functions</h2>
+          <ul>            
+            <li>FindElements()</li>
+            <li>FindElement()</li>
+            <li>getAttribute()</li>
+            <li>getCSSValue()</li>
+            <li>getLocation()</li>
+            <li>getSize()</li>
+          </ul>
+        </section>
+        
+        <section>
+          <h2>WebDriverElement Functions Continued</h2>
+          <ul>  
+            <li>getTagName()</li>
+            <li>isEnabled()</li>
+            <li>isSelected()</li>
+            <li>submit()</li>
+            <li>clear()</li>
+          </ul>
+        </section>
+        
+        <section>
+          <h2>WebDriverElement Functions Continued</h2>
+          <ul>
+            <li>click()</li>
+            <li>isDisplayed()</li>
+            <li>sendKeys()</li>
+            <li>getText()</li>
+            <li>getID()</li>
+            <li>getLocationOnScreenOnceScolledIntoView()</li>    
+          </ul>
+        </section>
+        
+        <section>
+          <h2>FindElement and WebDriverBy::</h2>
+          <ul>
+            <li>id()</li>
+            <li>className()</li>
+            <li>cssSelector()</li>
+            <li>xpath()</li>
+            <li>tagName()</li>
+            <li>name()</li>
+            <li>linkText()</li>
+          </ul>
+        </section>
+        
+        <section>
+          <h2>Brittle WebDriver test in PHPUnit</h2>
+        </section>
+        
+        <section>
+<pre style="width:100%">
+class UITestWPExample extends PHPUnit_Framework_TestCase {
+ ...
+ public function setUp(){
+  $capabilities = array(\WebDriverCapabilityType::BROWSER_NAME => 'firefox');
+  $this->driver = RemoteWebDriver::create('http://127.0.0.1:4444/wd/hub',$capabilities);
+  $this->driver->get('http://local.wordpress.dev/wp-login.php');
+ }
+ ...
+}
+</pre>
+        </section>
+        
+        <section>
 <pre style="width:100%">
 class UITestWPExample extends PHPUnit_Framework_TestCase {
  protected $driver;
- public function setUp(){
-  $capabilities = array(\WebDriverCapabilityType::BROWSER_NAME => 'firefox');
-  $this->driver = RemoteWebDriver::create('http://selenium_server',$capabilities);
-  $this->driver->get('http://local.wordpress.dev/wp-login.php');
- }
+ 
  public function canLogInAndSeeHelloDolly() {
   $driver = $this->driver;
   $username   = $driver->findElement(WebDriverBy::id('user_login'));
@@ -207,17 +280,17 @@ class UITestWPExample extends PHPUnit_Framework_TestCase {
  }
 }
 </pre>
-				</section>
-				
-				
-				<section>
+        </section>
+        
+        
+        <section>
 <pre style="width:100%">
 class UITestWPExample extends PHPUnit_Framework_TestCase {
  ...
  ...
  ...
  public function canLogIn() {
- 	$driver = $this->driver;
+   $driver = $this->driver;
   $username   = $driver->findElement(WebDriverBy::id('user_login'));
   $password   = $driver->findElement(WebDriverBy::id('user_pass'));
   $rememberme = $driver->findElement(WebDriverBy::id('rememberme'));
@@ -237,94 +310,235 @@ class UITestWPExample extends PHPUnit_Framework_TestCase {
  }
 }
 </pre>
-				</section>
+        </section>
 
-				<section>
-					<h2>Wait... What!</h2>
-					<ul>
-						<li class="fragment left">Same code being used over and over again.</li>
-						<li class="fragment left">Element IDs can change.</li>
-						<li class="fragment left">Log in process can change.</li>
-					</ul>
-				</section>
-				
-				<section>
-					<h2>Non-Brittle Tests</h2>
-				</section>
-				
-				<section>
-						<h2>What is Non-Brittle</h2>
-						<div class="fragment left">Reusable</div>
-						<div class="fragment left">Easily updated</div>
-						<div class="fragment left">Modular</div>
-						<div class="fragment left">Extensible</div>
-						<div class="fragment left">Not broken by minor page updates</div>
-				</section>
+        <section>
+          <h2>There has to be a better way!</h2>
+          <ul>
+            <li class="fragment left">Element IDs can change.</li>
+            <li class="fragment left">Log in process can change.</li>
+            <li class="fragment left">Same code being used over and over again.</li>
+            <li class="fragment left">Same code being used over and over again.</li>
+          </ul>
+        </section>
+        
+        <section>
+          <h2>Non-Brittle Tests</h2>
+        </section>
+        
+        <section>
+            <h2>What is Non-Brittle</h2>
+            <div class="fragment left">Reusable</div>
+            <div class="fragment left">Easily updated</div>
+            <div class="fragment left">Modular</div>
+            <div class="fragment left">Extensible</div>
+            <div class="fragment left">Not broken by minor page updates</div>
+        </section>
 
-				<section>
-					<h2>Page Object Model</h2>
-				</section>				
-				
-				<section>
-						<h2>Why We Use the Page Object Model</h2>
-						<div class="left">Separate tests from logic to find page elements</div>
-						<div class="fragment left">Define reusable objects for elements on the page</div>
-						<div class="fragment left">Reduces code duplication</div>
-						<div class="fragment left">Increases test readability</div>
-				</section>
-				
-				
-				<section>
-						<h2>Separating Finding Page Elements From the Test</h2>
-						<div class="left">Create objects in PHP</div>
-						<div class="fragment left">Well named functions</div>
-						<div class="fragment left">Test does not use the WebDriver to find elements</div>
-						<div class="fragment left">Test only asserts true or false or equal to</div>
-				</section>
-				
-				<section>
-						<h2>Page Object Model Basics</h2>
-						<div class="left">Break the page into distinct components</div>
-						<div class="fragment left">Write an object or trait for each component</div>
-						<div class="fragment left">Object returns what test needs to assert</div>
-						<div class="fragment left">Objects do not assert</div>
-				</section>
-				
-				
-				
-				
-				<section>
-<pre style="width:100%">
-class WPLoginPage {
- protected $driver;
- public __construct($driver){
-  $this->driver = $driver;
- }
- 
- public function LogIn(){
-  $username   = $this->driver->findElement(WebDriverBy::id('user_login'));
-  $password   = $this->driver->findElement(WebDriverBy::id('user_pass'));
-  $rememberme = $this->driver->findElement(WebDriverBy::id('rememberme'));
-  $submit     = $this->driver->findElement(WebDriverBy::id('wp-submit'));
-  $username->sendKeys('admin');
-  $password->sendKeys('password');
-  $rememberme->click();
-  $submit->click();
-  $url = 'http://local.wordpress.dev/wp-admin/';
-  $driver->wait(5,500)->until(
-   function () use ($driver) {
-    return (strpos($driver->getCurrentURL(),$url) !== false);
-   },
-   '5 seconds passed page did not load. oh noes.'
-  );
- }
+        <section>
+          <h2>Page Object Model</h2>
+        </section>        
+        
+        <section>
+            <h2>Why We Use the Page Object Model</h2>
+            <div class="left">Separate tests from logic to find page elements</div>
+            <div class="fragment left">Define reusable objects for elements on the page</div>
+            <div class="fragment left">Reduces code duplication</div>
+            <div class="fragment left">Increases test readability</div>
+        </section>
+        
+        
+        <section>
+            <h2>Separating Finding Page Elements From the Test</h2>
+            <div class="left">Create objects in PHP</div>
+            <div class="fragment left">Well named functions</div>
+            <div class="fragment left">Test does not use the WebDriver to find elements</div>
+            <div class="fragment left">Test only asserts true or false or equal to</div>
+        </section>
+        
+        <section>
+            <h2>Page Object Model Basics</h2>
+            <div class="left">Break the page into distinct components</div>
+            <div class="fragment left">Write an object or trait for each component</div>
+            <div class="fragment left">Object returns what test needs to assert</div>
+            <div class="fragment left">Objects do not assert</div>
+        </section>
+        
+        
+        
+        
+        <section>
+<pre style="width:100%;font-size:0.4em">
+class WPPage {
+  public $driver, $site_url, $login_url, $admin_url;
+
+  public function __construct($driver){
+    $this->driver = $driver;
+    $this->site_url = "http://local.wordpress.dev";
+    $this->login_url = "{$this->site_url}/wp-login.php";
+    $this->admin_url = "{$this->site_url}/wp-admin/";
+  }
+  
+  public function get_admin_url(){
+    return $this->admin_url;
+  }
+  
+  public function getCurrentURL(){
+    return $this->driver->getCurrentURL();
+  }
+  
+  public function is_hello_dolly_visible(){
+    return $this->driver->findElement(WebDriverBy::id('dolly'))->isDisplayed();
+  }
+  
+  public function login(){
+    try{
+      $this->driver->get($this->login_url);
+      $this->driver->findElement(WebDriverBy::id('user_login'))->sendKeys('admin');
+      $this->driver->findElement(WebDriverBy::id('user_pass'))->sendKeys('password');
+      $this->driver->findElement(WebDriverBy::id('rememberme'))->click();
+      $this->driver->findElement(WebDriverBy::id('wp-submit'))->click();
+        $this->driver->wait(5,500)->until(
+         function ()  {
+          return $this->driver->getCurrentURL() == $this->admin_url;
+         },
+         '5 seconds passed page did not load. oh noes.'
+        );
+      }
+    catch (Exception $e){
+      return false;
+    }
+    return true;
+  }
 }
 </pre>
-				</section>
-				
-				
-				
-				<section>
+        </section>
+        
+        
+        <section>
+<pre style="width:100%">
+class WPPage {
+  public $driver, $site_url, $login_url, $admin_url;
+
+  public function __construct($driver){
+    $this->driver = $driver;
+    $this->site_url = "http://local.wordpress.dev";
+    $this->login_url = "{$this->site_url}/wp-login.php";
+    $this->admin_url = "{$this->site_url}/wp-admin/";
+  }
+  
+  ...
+}
+</pre>
+        </section>
+        
+        <section>
+<pre style="width:100%">
+class WPPage {
+  ...
+  
+  public function get_admin_url(){
+    return $this->admin_url;
+  }
+  
+  ...
+}
+</pre>
+        </section>
+        
+        <section>
+<pre style="width:100%">
+class WPPage {
+  ...
+  
+  public function is_hello_dolly_visible(){
+    return $this->driver->findElement(WebDriverBy::id('dolly'))->isDisplayed();
+  }
+  
+  ...
+}
+</pre>
+        </section>
+        
+        <section>
+<pre style="width:100%">
+class WPPage {
+  ...
+  
+  public function login(){
+    try{
+      $this->driver->get($this->login_url);
+      $this->driver->findElement(WebDriverBy::id('user_login'))->sendKeys('admin');
+      $this->driver->findElement(WebDriverBy::id('user_pass'))->sendKeys('password');
+      $this->driver->findElement(WebDriverBy::id('rememberme'))->click();
+      $this->driver->findElement(WebDriverBy::id('wp-submit'))->click();
+        $this->driver->wait(5,500)->until(
+         function ()  {
+          return $this->driver->getCurrentURL() == $this->admin_url;
+         },
+         '5 seconds passed page did not load. oh noes.'
+        );
+      }
+    catch (Exception $e){
+      return false;
+    }
+    return true;
+  }
+}
+</pre>
+        </section>
+        
+        <section>
+<pre style="width:100%">
+    $this->driver->findElement(WebDriverBy::id('user_login'))->sendKeys('admin');
+    $this->driver->findElement(WebDriverBy::id('user_pass'))->sendKeys('password');
+    $this->driver->findElement(WebDriverBy::id('rememberme'))->click();
+    $this->driver->findElement(WebDriverBy::id('wp-submit'))->click();
+</pre>
+        </section>
+        
+        <section>
+<pre style="width:100%">
+public function login_enter_user_login($keys){
+	$this->driver->findElement(WebDriverBy::id('user_login'))->sendKeys($keys);
+}
+
+public function login_enter_user_pass($keys){
+	$this->driver->findElement(WebDriverBy::id('user_pass'))->sendKeys($keys);
+}
+
+public function login_click_rememberme(){
+	$this->driver->findElement(WebDriverBy::id('wp-submit'))->click();
+}
+
+public function login_click_submit(){
+	$this->driver->findElement(WebDriverBy::id('wp-submit'))->click();
+}
+</pre>
+        </section>
+        
+                <section>
+<pre style="width:100%">
+    $this->login_enter_user_login('admin');
+    $this->login_enter_user_pass('password');
+    $this->login_click_remember_me();
+    $this->login_click_submit();
+</pre>
+	</section>
+
+        
+        <section>
+<pre style="width:100%">
+    $this->driver->wait(5,500)->until(
+     function ()  {
+      return $this->driver->getCurrentURL() == $this->admin_url;
+     },
+     '5 seconds passed page did not load. oh noes.'
+    );
+</pre>
+        </section>
+        
+        <section>
 <pre style="width:100%">
 class WPAdminPage {
  protected $driver;
@@ -343,11 +557,11 @@ class WPAdminPage {
  }
 }
 </pre>
-				</section>
-				
-				
-				
-				<section>
+        </section>
+        
+        
+        
+        <section>
 <pre style="width:100%">
 class UITestWPExample extends PHPUnit_Framework_TestCase {
  protected $driver;
@@ -356,27 +570,76 @@ class UITestWPExample extends PHPUnit_Framework_TestCase {
   $this->driver = RemoteWebDriver::create('http://selenium_server',$capabilities);
   $this->driver->get('http://local.wordpress.dev/wp-login.php');
  }
- public function canLogIn() {
- 	$page = new WPLoginPage($this->driver);
+ public function testCanLogIn() {
+  $page = new WPLoginPage($this->driver);
   $page->logIn();
   $page = new WPAdminPage($this->driver);
-  $this->assertTrue($page->isAdminUrl());
+  $this->assertEquals($page->get_admin_url(),$page->getCurrentURL());
  }
- public function canLogInAndSeeHelloDolly() {
+ public function testCanLogInAndSeeHelloDolly() {
   $page = new WPAdminPage($this->driver);
   $page->logIn();
   $page = new WPAdminPage($this->driver);
-  $this->assertTrue($page->isAdminUrl());
+  $this->assertEquals($page->get_admin_url(),$page->getCurrentURL());
   $this->assertTrue($page->isHelloDollyVisible());
  }
 }
 </pre>
-				</section>
-				
-				
-				<section>
-					<h2>Testing for Accessibility</h2>
-					
+        </section>
+        
+        
+        <section>
+<pre style="width:100%">
+class UITestWPExample extends PHPUnit_Framework_TestCase {
+ ...
+ public function setUp(){
+  $capabilities = array(\WebDriverCapabilityType::BROWSER_NAME => 'firefox');
+  $this->driver = RemoteWebDriver::create('http://selenium_server',$capabilities);
+  $this->driver->get('http://local.wordpress.dev/wp-login.php');
+ }
+ ...
+}
+</pre>
+        </section>
+        
+        <section>
+<pre style="width:100%">
+class UITestWPExample extends PHPUnit_Framework_TestCase {
+ ...
+ 
+ public function testCanLogIn() {
+  $page = new WPLoginPage($this->driver);
+  $page->logIn();
+  $page = new WPAdminPage($this->driver);
+  $this->assertEquals($page->get_admin_url(),$page->getCurrentURL());
+ }
+ 
+ ...
+}
+</pre>
+        </section>
+        
+        <section>
+<pre style="width:100%">
+class UITestWPExample extends PHPUnit_Framework_TestCase {
+ ...
+ 
+ public function testCanLogInAndSeeHelloDolly() {
+  $page = new WPAdminPage($this->driver);
+  $page->login();
+  $page = new WPAdminPage($this->driver);
+  $this->assertEquals($page->get_admin_url(),$page->getCurrentURL());
+  $this->assertTrue($page->isHelloDollyVisible());
+ }
+ 
+ ...
+}
+</pre>
+        </section>
+        
+        <section>
+          <h2>Testing for Accessibility</h2>
+          
 <pre style="width:100%">
 class UITestWPExample extends PHPUnit_Framework_TestCase {
  ...
@@ -391,105 +654,115 @@ class UITestWPExample extends PHPUnit_Framework_TestCase {
  }
 }
 </pre>
-				</section>
-				
-				
-				<section>
-					<h2>The Selenium Server</h2>
-					<ul>
-						<li class="fragment left">Built in FireFox support</li>
-						<li class="fragment left">Automates the browser</li>
-						<li class="fragment left">Listens to commands from the Test</li>
-						<li class="fragment left">3rd party Drivers made by browser vendors</li>
-					</ul>
-				</section>
-				
-				<section>
-					<h2>Selenium Server Services</h2>
-					<ul>
-						<li class="fragment left">BrowserStack</li>
-						<li class="fragment left">Sauce Labs</li>
-						<li class="fragment left">Cross Browser Testing</li>
-					</ul>
-				</section>
+        </section>
+        
+        
+        <section>
+          <h2>The Selenium Server</h2>
+          <ul>
+            <li class="fragment left">Built in FireFox support</li>
+            <li class="fragment left">Automates the browser</li>
+            <li class="fragment left">Listens to commands from the Test</li>
+            <li class="fragment left">3rd party Drivers made by browser vendors</li>
+          </ul>
+        </section>
+        
+        <section>
+          <h2>Selenium Server Services</h2>
+          <ul>
+            <li class="fragment left">BrowserStack</li>
+            <li class="fragment left">Sauce Labs</li>
+            <li class="fragment left">Cross Browser Testing</li>
+          </ul>
+        </section>
 
-				<section>
-					<h2>Advantages of using a service</h2>
-					<ul>
-						<li class="fragment left">Up to date WebDrivers</li>
-						<li class="fragment left">Multiple Operating Systems</li>
-						<li class="fragment left">Mobile Devices</li>
-						<li class="fragment left">Parallel Tests</li>
-					</ul>
-				</section>
-				
-				<section>
-					<h2>What is Needed</h2>
-					<ul>
-						<li class="fragment left">Development Environment with PHP</li>
-						<li class="fragment left">PHPUnit</li>
-						<li class="fragment left">PHP WebDriver by Facebook</li>
-						<li class="fragment left">Selenium Server or Service</li>
-					</ul>
-				</section>
-				
-				
-				<section>
-					<h2>Installing PHPUnit and PHP Webdriver</h2>
-					<h3>Use composer for the easiest method</h3>
+        <section>
+          <h2>Advantages of using a service</h2>
+          <ul>
+            <li class="fragment left">Up to date WebDrivers</li>
+            <li class="fragment left">Multiple Operating Systems</li>
+            <li class="fragment left">Mobile Devices</li>
+            <li class="fragment left">Parallel Tests</li>
+          </ul>
+        </section>
+        
+        <section>
+          <h2>What is Needed</h2>
+          <ul>
+            <li class="fragment left">Development Environment with PHP 5.6+</li>
+            <li class="fragment left">PHPUnit</li>
+            <li class="fragment left">PHP WebDriver by Facebook</li>
+            <li class="fragment left">Selenium Server (Java) or Service</li>
+          </ul>
+        </section>
+        
+        
+        <section>
+          <h2>Installing PHPUnit and PHP Webdriver</h2>
+          <h3>Use composer for the easiest method</h3>
 <pre>
-	{
-	  "require-dev" : {
-	    "phpunit/phpunit" : "5.3.*",
-	    "phpunit/phpunit-selenium" : "^1.4",
-	    "facebook/webdriver" : "dev-master"
-	  }
-	}
+  {
+    "require-dev" : {
+      "phpunit/phpunit"    : "5.3.*",
+      "facebook/webdriver" : "dev-master"
+    }
+  }
 </pre>
-				</section>
-			
-				
-				
-				
-				<section >
-						<h2>Thank You!</h2>
-						<div >Follow me on Twitter @benjamincool for slides</div>
-				</section>
+        </section>
+      
+      	<section>
+          <h2>Using Selenium Standalone Server</h2>
+          <ul>
+          	<li>Download from seleniumhq.org</li>
+          	<li>java -jar selenium-server-standalone-2.53.0.jar</li>
+          	<li>http://127.0.0.1:4444/wd/hub</li>
+          </ul>
+        </section>
+        
+        
+        <section>
+          <h2>Running a test on your local machine</h2>
+        </section>
+        
+        <section >
+            <h2>Thank You!</h2>
+            <div >Follow me on Twitter<br>@benjamincool for slides</div>
+        </section>
 
 
-			</div>
+      </div>
 
-		</div>
+    </div>
 
-		<script src="reveal/lib/js/head.min.js"></script>
-		<script src="reveal/js/reveal.js"></script>
+    <script src="reveal/lib/js/head.min.js"></script>
+    <script src="reveal/js/reveal.js"></script>
 
-		<script>
+    <script>
 
-			// Full list of configuration options available at:
-			// https://github.com/hakimel/reveal.js#configuration
-			Reveal.initialize({
-				controls: false,
-				progress: true,
-				history: true,
-				center: true,
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: false,
+        progress: true,
+        history: true,
+        center: true,
 
-				transition: 'convex', // none/fade/slide/convex/concave/zoom
+        transition: 'convex', // none/fade/slide/convex/concave/zoom
 
-				// Optional reveal.js plugins
-				dependencies: [
-					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
-					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
-					{ src: 'plugin/zoom-js/zoom.js', async: true },
-					{ src: 'plugin/notes/notes.js', async: true }
-				]
-			});
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'plugin/zoom-js/zoom.js', async: true },
+          { src: 'plugin/notes/notes.js', async: true }
+        ]
+      });
 
-			Reveal.configure({ backgroundTransition: 'zoom' })
+      Reveal.configure({ backgroundTransition: 'zoom' })
 
-		</script>
+    </script>
 
-	</body>
+  </body>
 </html>
